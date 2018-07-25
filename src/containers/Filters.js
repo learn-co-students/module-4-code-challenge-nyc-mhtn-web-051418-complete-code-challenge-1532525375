@@ -8,7 +8,7 @@ const Filters = (props) => {
             <div className="ui segment inverted olive">
                 <FilterByClass filterBotsClass={props.filterBotsClass}
                 />
-                <SortBy />
+                <SortBy sortValue={props.sortValue} handleSort={props.handleSort}/>
                 <SearchBar nameValue={props.nameValue} handleSearch={props.handleSearch}/>
             </div>
         );

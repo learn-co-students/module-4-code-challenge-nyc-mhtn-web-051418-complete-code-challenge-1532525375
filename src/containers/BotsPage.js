@@ -17,6 +17,7 @@ class BotsPage extends Component {
       specsView: false,
 
       nameValue: "",
+      sortValue: "Name",
       filterBots: [],
       filterBotsClass: [],
       renderFilter:[],
@@ -54,7 +55,7 @@ class BotsPage extends Component {
       this.setState({
         myBots: newArmy,
         specsView: false,
-      }, () => console.log("myarmy", this.state.myBots))
+      })
     }
     else {
       return console.log("Enlisted!")
@@ -63,13 +64,13 @@ class BotsPage extends Component {
 
   removeFromMyArmy = (id) => {
     let newArmy = this.state.myBots.filter( (bot) => bot.id !== parseInt(id))
-    this.setState({myBots: newArmy}, () => console.log("myarmy", this.state.myBots))
+    this.setState({myBots: newArmy})
   }
 
   //FILTER FUNCTIONALITY
   filterBots = () => {
     let newArmy = this.state.filterBotsClass.filter( (bot) => bot.name.toLowerCase().includes(this.state.nameValue.toLowerCase()))
-    this.setState({renderFilter: newArmy}, () => console.log("filterBots", this.state.renderFilter))
+    this.setState({renderFilter: newArmy}, this.sortBots)
   }
   
   filterBotsClass = (e) => {
@@ -86,7 +87,39 @@ class BotsPage extends Component {
     }, this.filterBots)
   }
 
+  sortBots = () => {
+    let sortedArmy = []
+    switch (this.state.sortValue) {
+      case "Name":
+          sortedArmy = this.state.renderFilter.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()))
+          this.setState({
+            renderFilter: sortedArmy,
+          })
+      break;
+      case "Armor":
+          sortedArmy = this.state.renderFilter.sort((a, b) => a.armor - b.armor)
+          this.setState({
+            renderFilter: sortedArmy,
+          })
+      break;
+      case "Health":
+          sortedArmy = this.state.renderFilter.sort((a, b) => a.health - b.health)
+          this.setState({
+            renderFilter: sortedArmy,
+          })
+      break;
+      case "Damage":
+        sortedArmy = this.state.renderFilter.sort((a, b) => a.damage - b.damage)
+        this.setState({
+          renderFilter: sortedArmy,
+        })
+      break;
+    }
+  }
+
   handleSearch = (e) => this.setState({nameValue: e.target.value}, this.filterBots)
+
+  handleSort = (e) => this.setState({sortValue: e.target.value}, this.sortBots)
 
   render() {
     return (
@@ -102,7 +135,9 @@ class BotsPage extends Component {
                                     <Fragment>
                                       <Filters 
                                         nameValue={this.state.nameValue}
+                                        sortValue={this.state.sortValue}
                                         handleSearch={this.handleSearch}
+                                        handleSort={this.handleSort}
                                         filterBotsClass={this.filterBotsClass}
                                       />
                                       <BotCollection 
