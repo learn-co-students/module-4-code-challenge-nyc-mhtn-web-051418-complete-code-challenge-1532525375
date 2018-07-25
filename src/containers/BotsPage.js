@@ -25,6 +25,16 @@ class BotsPage extends React.Component {
     } 
   }
 
+  removeBotFromArmy = (event, botId) => {
+    const selectedBot = this.state.yourBotArmy.find( bot => bot.id === botId); 
+    const filteredBotArmy = this.state.yourBotArmy.filter( bot => {
+      return bot.id !== selectedBot.id
+    })
+    this.setState({
+      yourBotArmy: filteredBotArmy
+    })
+  }
+
   componentDidMount() {
     fetch(BOTS_URL).then( resp => resp.json()).then( botsJson => this.setState({
       bots: botsJson
@@ -34,7 +44,7 @@ class BotsPage extends React.Component {
   render() {
     return (
       <div>
-        <YourBotArmy bots={this.state.yourBotArmy} />
+        <YourBotArmy bots={this.state.yourBotArmy} onClick={this.removeBotFromArmy}/>
         <BotCollection bots={this.state.bots} onBotClick={this.handleClickOnBot}/>
       </div>
     );
