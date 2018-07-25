@@ -15,6 +15,9 @@ class BotsPage extends Component {
       selectedInBot: [],
       myBots: [],
       specsView: false,
+
+      nameValue: "",
+      filterBots: [],
     }
   }
   
@@ -24,10 +27,13 @@ class BotsPage extends Component {
     .then(r => r.json())
     .then(json =>
       this.setState({
-        allBots: json
+        allBots: json,
+        filterBots: json,
       })
     )
   }
+
+  //CORE FUNCTIONALITY
 
   handleSpecsView = () => this.setState({specsView: false})
 
@@ -57,6 +63,19 @@ class BotsPage extends Component {
     this.setState({myBots: newArmy}, () => console.log("myarmy", this.state.myBots))
   }
 
+  //FILTER FUNCTIONALITY
+  filterBots = () => {
+    let newArmy = this.state.allBots.filter( (bot) => bot.name.toLowerCase().includes(this.state.nameValue.toLowerCase()))
+    this.setState({filterBots: newArmy}, () => console.log("filterBots", this.state.myBots))
+  }
+
+  filterBotsClass = (e) => {
+    let newArmy = this.state.filterBots.filter( (bot) => bot.bot_class === e.target.value)
+    this.setState({filterBots: newArmy}, () => console.log("filterBots", this.state.myBots))
+  }
+
+  handleSearch = (e) => this.setState({nameValue: e.target.value}, this.filterBots)
+
   render() {
     return (
       <div>
@@ -69,10 +88,15 @@ class BotsPage extends Component {
                                   /> 
         : 
                                     <Fragment>
-                                      <Filters />
+                                      <Filters 
+                                        nameValue={this.state.nameValue}
+                                        handleSearch={this.handleSearch}
+                                        filterBotsClass={this.filterBotsClass}
+                                      />
                                       <BotCollection 
-                                      allBots={this.state.allBots} 
-                                      handleBotSelection={(id, action) => this.handleBotSelection(id, action)}/>
+                                        allBots={this.state.filterBots} 
+                                        handleBotSelection={(id, action) => this.handleBotSelection(id, action)}
+                                      />
                                     </Fragment>
         }
       </div>

@@ -1,18 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import FilterByClass from './FilterByClass'
 import SortBy from './SortBy'
 import SearchBar from './SearchBar'
 
-class Filters extends Component {
-    render() {
+const Filters = (props) => {
         return (
             <div className="ui segment inverted olive">
-                <FilterByClass />
+                <FilterByClass filterBotsClass={props.filterBotsClass}
+                />
                 <SortBy />
-                <SearchBar />
+                <SearchBar nameValue={props.nameValue} handleSearch={props.handleSearch}/>
             </div>
         );
-    }
 }
 
 export default Filters;

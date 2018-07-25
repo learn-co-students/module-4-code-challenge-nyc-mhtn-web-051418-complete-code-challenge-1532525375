@@ -1,10 +1,10 @@
 import React, {Fragment} from 'react';
 
-const FilterByClass = () => {
+const FilterByClass = (props) => {
     return (
         <Fragment>
             <p>Filter by Bot Class</p>
-            <select>
+            <select onChange={props.filterBotsClass}>
                 <option value="All">All</option>
                 <option value="Defender">Defender</option>
                 <option value="Assault">Assault</option>
