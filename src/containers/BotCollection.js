@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import BotCard from "../components/BotCard";
 
 class BotCollection extends Component {
@@ -6,7 +6,7 @@ class BotCollection extends Component {
 
   loadBotCards = () => {
     return this.props.bots.map(bot => {
-      return <BotCard bot={bot} />
+      return <BotCard bot={bot} onClick={this.props.onClick}/>
     })
   }
 
@@ -15,7 +15,6 @@ class BotCollection extends Component {
   	  <div className="ui four column grid">
     		<div className="row">
     		  {this.loadBotCards()}
-    		  Collection of all bots
     		</div>
   	  </div>
   	);
