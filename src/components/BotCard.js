@@ -1,18 +1,18 @@
-import React from "react";
+import React from 'react';
 
-const BotCard = props => {
+const BotCard = (props) => {
   const { bot } = props;
 
   let botType;
 
   switch (bot.bot_class) {
-    case "Assault":
+    case 'Assault':
       botType = <i className="icon military" />;
       break;
-    case "Defender":
+    case 'Defender':
       botType = <i className="icon shield" />;
       break;
-    case "Support":
+    case 'Support':
       botType = <i className="icon ambulance" />;
       break;
     default:
@@ -23,8 +23,8 @@ const BotCard = props => {
     <div className="ui column">
       <div
         className="ui card"
-        key={bot.id}
-        onClick={() => console.log("add code to connect event listener")}
+        key={props.bot.id}
+        onClick={() => props.onSelectedBot(props.bot)}
       >
         <div className="image">
           <img alt="oh no!" src={bot.avatar_url} />
@@ -56,7 +56,6 @@ const BotCard = props => {
       </div>
     </div>
   );
-
 };
 
 export default BotCard;
