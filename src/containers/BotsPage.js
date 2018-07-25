@@ -33,10 +33,25 @@ class BotsPage extends React.Component {
     })
   }
 
+  handleArmyBotClick = (event, selectedBot) => {
+    //take the clicked army bot out of the army
+    let updatedBotArmy;
+
+    //filter out selected bot
+    updatedBotArmy = this.state.botArmy.filter(bot => {
+      return bot !== selectedBot
+    })
+
+    //update state
+    this.setState({
+      botArmy: updatedBotArmy,
+    })
+  }
+
   render() {
     return (
       <div>
-        <YourBotArmy botArmy={this.state.botArmy} onClick={this.handleBotClick}/>
+        <YourBotArmy botArmy={this.state.botArmy} onClick={this.handleArmyBotClick}/>
         <BotCollection bots={this.state.bots} onClick={this.handleBotClick}/>
       </div>
     );
