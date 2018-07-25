@@ -1,6 +1,7 @@
 import React from "react";
 import YourBotArmy from './YourBotArmy'
 import BotCollection from './BotCollection'
+import BotSpecs from '../components/BotSpecs'
 
 class BotsPage extends React.Component {
   //start here with your code for step one
@@ -12,6 +13,7 @@ class BotsPage extends React.Component {
       allBots: [],
       selectedInBot: [],
       myBots: [],
+      specsView: false,
     }
   }
   
@@ -26,10 +28,18 @@ class BotsPage extends React.Component {
     )
   }
 
+  handleSpecsView = () => this.setState({specsView: false})
+
+  showSpecsView = () => {
+
+  }
+
   handleBotSelection = (id, action) => {
     let selectedBot = this.state.allBots.find( (bot) => bot.id === parseInt(id))
     this.setState({
-      selectedInBot: selectedBot}, () => action === "enlist" ? this.addBotToMyArmy(id) : this.removeFromMyArmy(id) )
+      selectedInBot: selectedBot,
+      specsView: true,
+    }, () => action === "enlist" ? this.addBotToMyArmy(id) : this.removeFromMyArmy(id) )
   }
 
   addBotToMyArmy = (id) => {
@@ -52,6 +62,7 @@ class BotsPage extends React.Component {
       <div>
         {/* put your components here */}
         <YourBotArmy myBots={this.state.myBots} handleBotSelection={(id, action) => this.handleBotSelection(id, action)}/>
+        {this.state.specsView ? console.log("specs") : console.log("nospecs")}
         <BotCollection allBots={this.state.allBots} handleBotSelection={(id, action) => this.handleBotSelection(id, action)}/>
       </div>
     );
