@@ -1,5 +1,6 @@
 import React from "react";
 import BotCollection from './BotCollection';
+import YourBotArmy from './YourBotArmy'; 
 const BOTS_URL = "https://bot-battler-api.herokuapp.com/api/v1/bots";
 
 class BotsPage extends React.Component {
@@ -17,7 +18,6 @@ class BotsPage extends React.Component {
     const selectedBot = this.state.bots.find( bot => bot.id === botId); 
     const yourBotArmyCopy = this.state.yourBotArmy.slice(); 
     yourBotArmyCopy.push(selectedBot); 
-    console.log("Bot Army Copy :", yourBotArmyCopy); 
     if (this.state.yourBotArmy.includes(selectedBot) === false) {
       this.setState({
         yourBotArmy: yourBotArmyCopy
@@ -34,6 +34,7 @@ class BotsPage extends React.Component {
   render() {
     return (
       <div>
+        <YourBotArmy bots={this.state.yourBotArmy} />
         <BotCollection bots={this.state.bots} onBotClick={this.handleClickOnBot}/>
       </div>
     );

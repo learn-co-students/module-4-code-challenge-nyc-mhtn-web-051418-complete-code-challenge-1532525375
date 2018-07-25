@@ -41,11 +41,11 @@ Work on fetching data from this API: https://bot-battler-api.herokuapp.com/api/v
   ```
 
 Based on the current structure of the app, think about where this array of bots needs to be stored. -->
-
+<!-- 
 
 #### 2.  Indexing bots
 
-After you have fetched the bots, work on rendering them into `BotCollection`, which should be a child of `BotsPage`. A component called `BotCard` has been provided to you to display the information about an individual bot in a list format.
+After you have fetched the bots, work on rendering them into `BotCollection`, which should be a child of `BotsPage`. A component called `BotCard` has been provided to you to display the information about an individual bot in a list format. -->
 
 
 #### 3.  Enlisting bots
