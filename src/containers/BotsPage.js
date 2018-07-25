@@ -1,9 +1,10 @@
-import React from "react";
+import React, {Component, Fragment} from "react";
 import YourBotArmy from './YourBotArmy'
 import BotCollection from './BotCollection'
 import BotSpecs from '../components/BotSpecs'
+import Filters from './Filters'
 
-class BotsPage extends React.Component {
+class BotsPage extends Component {
   //start here with your code for step one
 
   constructor(props) {
@@ -67,9 +68,12 @@ class BotsPage extends React.Component {
                                     addBotToMyArmy={(id) => this.addBotToMyArmy(id)}
                                   /> 
         : 
-                                 <BotCollection 
-                                    allBots={this.state.allBots} 
-                                    handleBotSelection={(id, action) => this.handleBotSelection(id, action)}/>
+                                    <Fragment>
+                                      <Filters />
+                                      <BotCollection 
+                                      allBots={this.state.allBots} 
+                                      handleBotSelection={(id, action) => this.handleBotSelection(id, action)}/>
+                                    </Fragment>
         }
       </div>
     );
