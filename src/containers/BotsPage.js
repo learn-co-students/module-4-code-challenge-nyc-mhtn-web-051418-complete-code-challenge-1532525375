@@ -62,7 +62,7 @@ class BotsPage extends React.Component {
       <div>
         {/* put your components here */}
         <YourBotArmy myBots={this.state.myBots} handleBotSelection={(id, action) => this.handleBotSelection(id, action)}/>
-        {this.state.specsView ? console.log("specs") : console.log("nospecs")}
+        {this.state.specsView ?  <BotSpecs bot={this.state.selectedInBot} /> : console.log("nospecs")}
         <BotCollection allBots={this.state.allBots} handleBotSelection={(id, action) => this.handleBotSelection(id, action)}/>
       </div>
     );
