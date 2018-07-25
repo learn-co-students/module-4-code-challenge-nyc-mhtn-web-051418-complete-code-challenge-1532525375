@@ -26,6 +26,18 @@ class BotsPage extends React.Component {
     })
   }
 
+  enlistBotInArmy = (event, botId) => {
+    const selectedBot = this.state.bots.find( bot => bot.id === botId);
+    
+    const yourBotArmyCopy = this.state.yourBotArmy.slice(); 
+    yourBotArmyCopy.push(selectedBot); 
+    if (this.state.yourBotArmy.includes(selectedBot) === false) {
+      this.setState({
+        yourBotArmy: yourBotArmyCopy
+      })
+    } 
+  }
+
   goBackToShowingAllBots = () => {
     this.setState({
       showingBotDetailPage: false, 
@@ -55,7 +67,7 @@ class BotsPage extends React.Component {
     let bottomHalfOfPage;
     if (onBotDetails) {
       console.log("Currently Selected Bot: ", this.state.currentlySelectedBot);
-      bottomHalfOfPage = <BotSpecs bot={this.state.currentlySelectedBot} goBack={this.goBackToShowingAllBots}/>
+      bottomHalfOfPage = <BotSpecs bot={this.state.currentlySelectedBot} enlistBot = {this.enlistBotInArmy} goBack={this.goBackToShowingAllBots}/>
     } else {
       bottomHalfOfPage =  <BotCollection bots={this.state.bots} onBotClick={this.handleClickOnBot}/>
     }

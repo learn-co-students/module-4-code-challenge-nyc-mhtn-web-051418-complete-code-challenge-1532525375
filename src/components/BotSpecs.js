@@ -69,10 +69,8 @@ const BotSpecs = props => {
             </button>
             <button
               className="ui button fluid"
-              onClick={() =>
-                console.log(
-                  "connect this to a function that adds this bot to your bot army list"
-                )
+              onClick={(event) =>
+                props.enlistBot(event, bot.id)
               }
             >
               Enlist
