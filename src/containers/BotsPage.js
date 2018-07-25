@@ -16,7 +16,7 @@ class BotsPage extends React.Component {
     }
   }
 
-  selectBot = () => {
+  selectBot = (event) => {
     console.log("You clicked a bot!!!")
   }
 
