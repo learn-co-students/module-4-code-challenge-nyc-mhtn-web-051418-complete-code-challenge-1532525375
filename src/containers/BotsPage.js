@@ -26,6 +26,12 @@ class BotsPage extends React.Component {
     })
   }
 
+  goBackToShowingAllBots = () => {
+    this.setState({
+      showingBotDetailPage: false, 
+    })
+  }
+
   removeBotFromArmy = (event, botId) => {
     const selectedBot = this.state.yourBotArmy.find( bot => bot.id === botId); 
     const filteredBotArmy = this.state.yourBotArmy.filter( bot => {
@@ -35,6 +41,7 @@ class BotsPage extends React.Component {
       yourBotArmy: filteredBotArmy
     })
   }
+
 
   componentDidMount() {
     fetch(BOTS_URL).then( resp => resp.json()).then( botsJson => this.setState({
@@ -48,7 +55,7 @@ class BotsPage extends React.Component {
     let bottomHalfOfPage;
     if (onBotDetails) {
       console.log("Currently Selected Bot: ", this.state.currentlySelectedBot);
-      bottomHalfOfPage = <BotSpecs bot={this.state.currentlySelectedBot}/>
+      bottomHalfOfPage = <BotSpecs bot={this.state.currentlySelectedBot} goBack={this.goBackToShowingAllBots}/>
     } else {
       bottomHalfOfPage =  <BotCollection bots={this.state.bots} onBotClick={this.handleClickOnBot}/>
     }
