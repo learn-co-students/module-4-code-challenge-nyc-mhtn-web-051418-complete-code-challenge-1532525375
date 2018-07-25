@@ -1,6 +1,9 @@
 import React from "react";
 
 const BotCard = props => {
+
+
+
   const { bot } = props;
 
   let botType;
@@ -18,6 +21,8 @@ const BotCard = props => {
     default:
       botType = <div />;
   }
+
+
 
   return (
     <div className="ui column">
