@@ -21,6 +21,8 @@ class BotsPage extends React.Component {
 
 
   chosenBot = (event) => {
+    //Note: On this method I was having difficult grabbing the entire bot, rather than just one element. I was adding my event listener too far down tree and ran out of time.
+
     event.persist();
     console.log("You clicked a bot!!!")
 
