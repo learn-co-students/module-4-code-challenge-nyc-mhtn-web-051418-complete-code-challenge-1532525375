@@ -8,8 +8,14 @@ class BotsPage extends React.Component {
     super();
 
     this.state = {
-      bots: []
+      bots: [],
+      yourBotArmy: []
     };
+  }
+
+  handleClickOnBot = (event, botId) => {
+    const selectedBot = this.state.bots.find( bot => bot.id === botId); 
+    console.log("Selected Bot: ", selectedBot); 
   }
 
   componentDidMount() {
@@ -21,7 +27,7 @@ class BotsPage extends React.Component {
   render() {
     return (
       <div>
-        <BotCollection bots={this.state.bots}/>
+        <BotCollection bots={this.state.bots} onBotClick={this.handleClickOnBot}/>
       </div>
     );
   }
