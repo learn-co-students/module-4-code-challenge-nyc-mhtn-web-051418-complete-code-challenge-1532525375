@@ -16,6 +16,10 @@ class BotsPage extends React.Component {
     }
   }
 
+  selectBot = () => {
+    console.log("You clicked a bot!!!")
+  }
+
   componentDidMount(){
     fetch(url)
       .then(response => response.json())
@@ -27,7 +31,10 @@ class BotsPage extends React.Component {
     return (
       <div>
         {/* put your components here */}
-        <BotCollection botList={this.state.bots}/>
+        <BotCollection
+          botList={this.state.bots}
+          selectBot={this.selectBot}
+          />
         <YourBotArmy selectedBots={this.state.selectedBots}/>
       </div>
     );

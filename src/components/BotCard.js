@@ -62,3 +62,6 @@ const BotCard = props => {
 };
 
 export default BotCard;
+
+
+//onClick={() => console.log("add code to connect event listener")}
