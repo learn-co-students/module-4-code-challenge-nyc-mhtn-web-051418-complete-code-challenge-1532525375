@@ -4,6 +4,8 @@ import BotCard from "../components/BotCard";
 class YourBotArmy extends React.Component {
   //your bot army code here...
 
+  //Would've added key to map if i could get the actual bot
+
   render(){
     return (
       <div className="ui segment inverted olive bot-army">

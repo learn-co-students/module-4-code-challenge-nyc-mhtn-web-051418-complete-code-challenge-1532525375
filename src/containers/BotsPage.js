@@ -6,7 +6,7 @@ const url = "https://bot-battler-api.herokuapp.com/api/v1/bots"
 
   let userSelection = []; //Not ideal. I should not be doing this with State. //Put up here because each click would reset the array if the array was declared/assigned as empty in the chosenBot method.
 
-  //Just wanted to get something to display.
+  //Just wanted to get something to display in the army page.
 
 class BotsPage extends React.Component {
   //start here with your code for step one
@@ -28,7 +28,7 @@ class BotsPage extends React.Component {
     event.persist();//only used for testing
     console.log("You clicked a bot!!!")
 
-    userSelection.push(event.target)
+    userSelection.push(event)
 
     this.setState( {userSelection: userSelection} ) //updating state
   }
