@@ -4,6 +4,8 @@ import YourBotArmy from "./YourBotArmy"
 
 const url = "https://bot-battler-api.herokuapp.com/api/v1/bots"
 
+  let userSelection = []; //Not ideal. I should not be doing this with State.
+
 class BotsPage extends React.Component {
   //start here with your code for step one
 
@@ -12,12 +14,19 @@ class BotsPage extends React.Component {
 
     this.state = {
       bots: [],
-      selectedBots: []
+      userSelection: []
     }
   }
 
-  selectBot = (event) => {
+
+
+  chosenBot = (event) => {
+    event.persist();
     console.log("You clicked a bot!!!")
+
+    userSelection.push(event.target)
+    //
+    this.setState( {userSelection: userSelection} )
   }
 
   componentDidMount(){
@@ -27,15 +36,16 @@ class BotsPage extends React.Component {
   }
 
   render() {
-    // console.log("BotsPage with fetch", this.state.bots)
+    console.log("BotsPage with fetch", this.state.userSelection)
     return (
       <div>
         {/* put your components here */}
         <BotCollection
           botList={this.state.bots}
-          selectBot={this.selectBot}
+          chosenBot={this.chosenBot}
+          userSelection={this.state.userSelection}
           />
-        <YourBotArmy selectedBots={this.state.selectedBots}/>
+        <YourBotArmy userSelection={this.state.userSelection}/>
       </div>
     );
   }

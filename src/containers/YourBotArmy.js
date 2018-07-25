@@ -10,7 +10,9 @@ class YourBotArmy extends React.Component {
         <div className="ui five column grid">
           <div className="row bot-army-row">
             {/*...and here...*/}
-            {this.props.selectedBots.map(bot => <BotCard bot={bot} />)}
+
+            {this.props.botList.map(bot => <BotCard bot={bot} />)}
+
             Your Bot Army
             TEST TEST TEST THIS SHOULD BE YOUR BOT ARMY!!!
           </div>
@@ -22,3 +24,6 @@ class YourBotArmy extends React.Component {
 };
 
 export default YourBotArmy;
+
+
+// {this.props.userSelection.map(bot => <BotCard bot={bot} />)}
