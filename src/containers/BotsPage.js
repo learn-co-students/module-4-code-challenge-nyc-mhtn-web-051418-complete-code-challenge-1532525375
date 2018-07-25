@@ -27,7 +27,13 @@ class BotsPage extends React.Component {
       );
 
   handleSelectedBot = (selectedBot) => {
-    this.setState({ army: [...this.state.army, selectedBot] });
+    if (this.findifBotExists(selectedBot.id) === undefined) {
+      this.setState({ army: [...this.state.army, selectedBot] });
+    }
+  };
+
+  findifBotExists = (botId) => {
+    return this.state.army.find((bot) => bot.id == botId);
   };
 
   renderBotArmy = () => {
