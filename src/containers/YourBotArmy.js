@@ -4,19 +4,28 @@ import BotCard from "../components/BotCard";
 class YourBotArmy extends React.Component {
   //your bot army code here...
 
+  //Would've added key to map if i could get the actual bot
+
   render(){
     return (
       <div className="ui segment inverted olive bot-army">
         <div className="ui five column grid">
           <div className="row bot-army-row">
             {/*...and here...*/}
+
+            {this.props.userSelection.map(bot => <BotCard bot={bot} />)}
+
             Your Bot Army
+            TEST TEST TEST THIS SHOULD BE YOUR BOT ARMY!!!
           </div>
         </div>
       </div>
     );
   }
-  
+
 };
 
 export default YourBotArmy;
+
+
+// {this.props.userSelection.map(bot => <BotCard bot={bot} />)}
