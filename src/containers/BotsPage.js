@@ -1,6 +1,7 @@
 import React from "react";
 import BotCollection from "./BotCollection"
 import YourBotArmy from "./YourBotArmy"
+import BotSpecs from "../components/BotSpecs"
 
 class BotsPage extends React.Component {
   constructor(){
@@ -8,6 +9,9 @@ class BotsPage extends React.Component {
     this.state={
       bots:[],
       userBots:[],
+      page: "",
+      detailDot: "",
+
     }
   }
 
@@ -25,7 +29,10 @@ addBots = (data) => {
 handleAddtoUserArmy = (event,bot) => {
   event.preventDefault()
 
-
+// this.setState({
+//   page: "show",
+//   detailDot: bot,
+// })
 
 const check = this.state.userBots.find(botAmry=>{
   return botAmry.id === bot.id
@@ -39,16 +46,26 @@ if (!check){
           userBots: myArmy,
         })
 }
+
+}
+
+  listing = ()=>{
+
+  if (this.state.page === "show"){
+    return (<BotSpecs bot={this.state.detailDot} />)
+  }else{
+    return (<div>
+      <YourBotArmy userbotArmy={this.state.userBots} />
+      <BotCollection listOfBots={this.state.bots} addToUserArmy={this.handleAddtoUserArmy}/>
+    </div>)
+  }
 }
 
   render() {
-    console.log("need to see",this.state.userBots)
-    return (
-      <div>
-        <YourBotArmy userbotArmy={this.state.userBots} />
-        <BotCollection listOfBots={this.state.bots} addToUserArmy={this.handleAddtoUserArmy}/>
-      </div>
-    );
+    return (<div>
+      <YourBotArmy userbotArmy={this.state.userBots} />
+      <BotCollection listOfBots={this.state.bots} addToUserArmy={this.handleAddtoUserArmy}/>
+    </div>)
   }
 
 }
