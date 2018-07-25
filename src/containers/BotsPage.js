@@ -10,23 +10,22 @@ class BotsPage extends React.Component {
     //set initial state
     this.state = {
       bots: [],
-      clickedBot: false
+      botArmy: []
     };
 
     // componentDidMount() {
     //   this.fetchData();
     // }
-
+    // fetchData() {
     fetch("https://bot-battler-api.herokuapp.com/api/v1/bots")
       .then(request => request.json())
       .then(json => this.setState({
         bots: json,
       }));
+    // }
   }
 
-    handleClick = () => {
-      console.log(this.state)
-    }
+
 
 
   render() {
