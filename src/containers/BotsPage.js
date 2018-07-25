@@ -1,6 +1,7 @@
 import React from "react";
 import BotCollection from './BotCollection';
 import YourBotArmy from './YourBotArmy'; 
+import BotSpecs from '../components/BotSpecs';
 const BOTS_URL = "https://bot-battler-api.herokuapp.com/api/v1/bots";
 
 class BotsPage extends React.Component {
@@ -10,19 +11,19 @@ class BotsPage extends React.Component {
 
     this.state = {
       bots: [],
-      yourBotArmy: []
+      yourBotArmy: [],
+      showingBotDetailPage: false,
+      currentlySelectedBot: null,
     };
   }
 
   handleClickOnBot = (event, botId) => {
-    const selectedBot = this.state.bots.find( bot => bot.id === botId); 
-    const yourBotArmyCopy = this.state.yourBotArmy.slice(); 
-    yourBotArmyCopy.push(selectedBot); 
-    if (this.state.yourBotArmy.includes(selectedBot) === false) {
-      this.setState({
-        yourBotArmy: yourBotArmyCopy
-      })
-    } 
+    const selectedBot = this.state.bots.find( bot => bot.id === botId);
+
+    this.setState({
+      showingBotDetailPage: true,
+      currentlySelectedBot: selectedBot
+    })
   }
 
   removeBotFromArmy = (event, botId) => {
@@ -42,10 +43,19 @@ class BotsPage extends React.Component {
   }
 
   render() {
+
+    const onBotDetails = this.state.showingBotDetailPage; 
+    let bottomHalfOfPage;
+    if (onBotDetails) {
+      console.log("Currently Selected Bot: ", this.state.currentlySelectedBot);
+      bottomHalfOfPage = <BotSpecs bot={this.state.currentlySelectedBot}/>
+    } else {
+      bottomHalfOfPage =  <BotCollection bots={this.state.bots} onBotClick={this.handleClickOnBot}/>
+    }
     return (
       <div>
         <YourBotArmy bots={this.state.yourBotArmy} onClick={this.removeBotFromArmy}/>
-        <BotCollection bots={this.state.bots} onBotClick={this.handleClickOnBot}/>
+        {bottomHalfOfPage}
       </div>
     );
   }

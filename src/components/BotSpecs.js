@@ -1,9 +1,10 @@
 import React from "react";
 
 const BotSpecs = props => {
+  console.log("Bot Spec Props: ", props);
   let { bot } = props;
 
-  let botType;
+  let botType; 
 
   switch (bot.bot_class) {
     case "Assault":
