@@ -26,9 +26,10 @@ class BotsPage extends React.Component {
     )
   }
 
-  handleBotSelection = (id) => {
+  handleBotSelection = (id, action) => {
     let selectedBot = this.state.allBots.find( (bot) => bot.id === parseInt(id))
-    this.setState({selectedInBot: selectedBot}, () => this.addBotToMyArmy(id) )
+    this.setState({
+      selectedInBot: selectedBot}, () => action === "enlist" ? this.addBotToMyArmy(id) : this.removeFromMyArmy(id) )
   }
 
   addBotToMyArmy = (id) => {
@@ -41,14 +42,17 @@ class BotsPage extends React.Component {
     }
   }
 
-  removeFromMyArmy
+  removeFromMyArmy = (id) => {
+    let newArmy = this.state.myBots.filter( (bot) => bot.id !== parseInt(id))
+    this.setState({myBots: newArmy}, () => console.log("myarmy", this.state.myBots))
+  }
 
   render() {
     return (
       <div>
         {/* put your components here */}
-        <YourBotArmy myBots={this.state.myBots}/>
-        <BotCollection allBots={this.state.allBots} handleBotSelection={(id) => this.handleBotSelection(id)}/>
+        <YourBotArmy myBots={this.state.myBots} handleBotSelection={(id, action) => this.handleBotSelection(id, action)}/>
+        <BotCollection allBots={this.state.allBots} handleBotSelection={(id, action) => this.handleBotSelection(id, action)}/>
       </div>
     );
   }
