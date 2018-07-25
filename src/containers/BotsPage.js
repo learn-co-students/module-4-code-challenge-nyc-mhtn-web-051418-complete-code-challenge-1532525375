@@ -52,6 +52,14 @@ class BotsPage extends React.Component {
     })
   }
 
+  enlistBot = (event, bot) => {
+    this.setState({
+      army: [...this.state.army, bot]
+    })
+  }
+
+
+
   render() {
     if (this.state.clickedBot !== "") {
       return (
@@ -59,7 +67,7 @@ class BotsPage extends React.Component {
           <YourBotArmy
             army={this.state.army}
             handleArmyBots={this.handleArmyBots}/>
-          <BotSpecs bot={this.state.clickedBot} goBack={this.goBack}/>
+          <BotSpecs bot={this.state.clickedBot} goBack={this.goBack} enlistBot={this.enlistBot}/>
         </div>
       )
     } else {
