@@ -1,5 +1,6 @@
 import React from "react";
 import BotCollection from "./BotCollection"
+import YourBotArmy from "./YourBotArmy"
 
 const url = "https://bot-battler-api.herokuapp.com/api/v1/bots"
 
@@ -10,7 +11,8 @@ class BotsPage extends React.Component {
     super(props);
 
     this.state = {
-      bots: []
+      bots: [],
+      selectedBots: []
     }
   }
 
@@ -26,6 +28,7 @@ class BotsPage extends React.Component {
       <div>
         {/* put your components here */}
         <BotCollection botList={this.state.bots}/>
+        <YourBotArmy selectedBots={this.state.selectedBots}/>
       </div>
     );
   }

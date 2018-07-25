@@ -18,6 +18,8 @@ Once the list is complete, work on the functionality of enlisting bots into your
 
 Note that nothing needs to be persisted. Refreshing the page should clear out the current army.
 
+
+
 CHECKPOINT!!!
 
 Before proceeding to the next part of the challenge, be sure to stage a commit at this point. That way if your code breaks or you do not get to finish the next feature, we will be able to see that you were able to get up to this point.
