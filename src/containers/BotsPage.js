@@ -15,7 +15,14 @@ class BotsPage extends React.Component {
 
   handleClickOnBot = (event, botId) => {
     const selectedBot = this.state.bots.find( bot => bot.id === botId); 
-    console.log("Selected Bot: ", selectedBot); 
+    const yourBotArmyCopy = this.state.yourBotArmy.slice(); 
+    yourBotArmyCopy.push(selectedBot); 
+    console.log("Bot Army Copy :", yourBotArmyCopy); 
+    if (this.state.yourBotArmy.includes(selectedBot) === false) {
+      this.setState({
+        yourBotArmy: yourBotArmyCopy
+      })
+    } 
   }
 
   componentDidMount() {
