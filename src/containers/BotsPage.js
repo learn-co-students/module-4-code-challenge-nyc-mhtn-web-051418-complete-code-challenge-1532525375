@@ -1,6 +1,7 @@
 import React from "react";
 import BotCollection from "./BotCollection"
 import YourBotArmy from "./YourBotArmy"
+import BotSpecs from "../components/BotSpecs"
 
 class BotsPage extends React.Component {
   //start here with your code for step one
@@ -11,6 +12,8 @@ class BotsPage extends React.Component {
     this.state = {
       bots: [],
       botArmy: [],
+      botClicked: false,
+      clickedBot: {},
     };
   }
 
@@ -26,10 +29,10 @@ class BotsPage extends React.Component {
   //We will listen for a bot clicked, and that bot back up
   handleBotClick = (event, selectedBot) => {
 
-    //copy botarmy and update it with new selected bot
-    let updatedBotArmy = [...this.state.botArmy, selectedBot]
+    //set state of clicked bot and botClicked for ternary and options menu
     this.setState({
-      botArmy: updatedBotArmy,
+      botClicked: !this.state.botClicked,
+      clickedBot: selectedBot,
     })
   }
 
@@ -48,11 +51,25 @@ class BotsPage extends React.Component {
     })
   }
 
+  handleOptionsClick = (event, buttonType) => {
+    if(buttonType === 'back') {
+      this.setState({
+        botClicked: false,
+      })
+    } else {
+      let updatedBotArmy = [...this.state.botArmy, this.state.clickedBot]
+      this.setState({
+        botArmy: updatedBotArmy,
+      })
+    }
+  }
+
+
   render() {
     return (
       <div>
         <YourBotArmy botArmy={this.state.botArmy} onClick={this.handleArmyBotClick}/>
-        <BotCollection bots={this.state.bots} onClick={this.handleBotClick}/>
+        {this.state.botClicked ? <BotSpecs bot={this.state.clickedBot} onClick={this.handleOptionsClick}/> : <BotCollection bots={this.state.bots} onClick={this.handleBotClick}/>}
       </div>
     );
   }
