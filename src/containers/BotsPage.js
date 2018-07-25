@@ -28,14 +28,20 @@ class BotsPage extends React.Component {
 
   handleBotSelection = (id) => {
     let selectedBot = this.state.allBots.find( (bot) => bot.id === parseInt(id))
-    this.setState({selectedInBot: selectedBot}, () => this.addBotToMyArmy() )
+    this.setState({selectedInBot: selectedBot}, () => this.addBotToMyArmy(id) )
   }
 
-  addBotToMyArmy = () => {
-    
-    let newArmy = [...this.state.myBots, this.state.selectedInBot]
-    this.setState({myBots: newArmy}, () => console.log("myarmy", this.state.myBots))
+  addBotToMyArmy = (id) => {
+    if (this.state.myBots.find( (bot) => bot.id === parseInt(id)) === undefined ) {
+      let newArmy = [...this.state.myBots, this.state.selectedInBot]
+      this.setState({myBots: newArmy}, () => console.log("myarmy", this.state.myBots))
+    }
+    else {
+      return console.log("Enlisted!")
+    }
   }
+
+  removeFromMyArmy
 
   render() {
     return (
