@@ -1,5 +1,7 @@
 import React from "react";
 
+//THIS IS FUNCTIONAL!!!
+
 const BotCard = props => {
   const { bot } = props;
 
