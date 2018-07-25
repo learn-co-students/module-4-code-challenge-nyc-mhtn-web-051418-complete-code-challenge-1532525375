@@ -51,8 +51,7 @@ class BotCollection extends React.Component {
 	}
 	
 
-  render(){
-		this.handleFilteringAndSortingBots(); 
+  render(){ 
   	return (
   	  <div className="ui four column grid">
 				<label>Filter bots based on class: </label>
